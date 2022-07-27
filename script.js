@@ -4,6 +4,34 @@ const outputDisplay = document.querySelector("#display");
 let operationString = "";
 
 const handleOperation = (operation) => {
+    //need to add capabilty to handle multiple operations in one string
+    // let moreOperations = true;
+
+    // while(moreOperations){
+    //     if(operation.includes("+")){
+    //         const numbersArr = operation.split("+");
+    //         const sum = Number(numbersArr[0]) + Number(numbersArr[1]);
+    //         return String(sum);
+    //     } else if(operation.includes("-")) {
+    //         const numbersArr = operation.split("-");
+    //         const sum = Number(numbersArr[0]) - Number(numbersArr[1]);
+    //         return String(sum);
+    //     } else if(operation.includes("*")) {
+    //         const numbersArr = operation.split("*");
+    //         const sum = Number(numbersArr[0]) * Number(numbersArr[1]);
+    //         return String(sum);
+    //     } else if(operation.includes("/")) {
+    //         const numbersArr = operation.split("/");
+    //         const sum = Number(numbersArr[0]) / Number(numbersArr[1]);
+    //         return String(sum);
+    //     } else if(operation.includes("%")) {
+    //         const numbersArr = operation.split("%");
+    //         const sum = Number(numbersArr[0]) % Number(numbersArr[1]);
+    //         return String(sum);
+    //     } else {
+    //         moreOperations = false;
+    //     }
+    // }
     if(operation.includes("+")){
         const numbersArr = operation.split("+");
         const sum = Number(numbersArr[0]) + Number(numbersArr[1]);
@@ -11,6 +39,18 @@ const handleOperation = (operation) => {
     } else if(operation.includes("-")) {
         const numbersArr = operation.split("-");
         const sum = Number(numbersArr[0]) - Number(numbersArr[1]);
+        return String(sum);
+    } else if(operation.includes("*")) {
+        const numbersArr = operation.split("*");
+        const sum = Number(numbersArr[0]) * Number(numbersArr[1]);
+        return String(sum);
+    } else if(operation.includes("/")) {
+        const numbersArr = operation.split("/");
+        const sum = Number(numbersArr[0]) / Number(numbersArr[1]);
+        return String(sum);
+    } else if(operation.includes("%")) {
+        const numbersArr = operation.split("%");
+        const sum = Number(numbersArr[0]) % Number(numbersArr[1]);
         return String(sum);
     }
 }
@@ -23,7 +63,11 @@ const handleButtonClick = (event) => {
         operationString = handleOperation(operationString);
         outputDisplay.innerHTML = operationString;
         
-    } else{
+    } else if(element == "+/-"){
+        operationString = "-" + operationString;
+        outputDisplay.innerHTML = operationString;
+    }
+    else{
         operationString += element;
         outputDisplay.innerHTML = operationString;
     }
