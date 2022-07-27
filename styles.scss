@@ -56,3 +56,25 @@ body {
         border-radius: 10px;
     }
 }
+
+@media screen and (min-width: 768px){
+
+    #display{
+        p{
+            font-size: 35px;
+        }
+    }
+
+    #buttonPad{
+        button{
+            margin: .5%;
+            width: 23%;
+            height: 17%;
+            font-size: 25px;
+        }
+    }
+}
+
+@media screen and (min-width: 1440px){
+
+}

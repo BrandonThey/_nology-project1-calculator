@@ -50,4 +50,16 @@ body {
   margin: 1%;
   margin-top: 1%;
   border-radius: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  #display p {
+    font-size: 35px;
+  }
+  #buttonPad button {
+    margin: 0.5%;
+    width: 23%;
+    height: 17%;
+    font-size: 25px;
+  }
 }/*# sourceMappingURL=styles.css.map */
