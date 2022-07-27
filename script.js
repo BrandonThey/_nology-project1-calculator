@@ -10,48 +10,50 @@ const handleOperation = (operation) => {
     // while(moreOperations){
     //     if(operation.includes("+")){
     //         const numbersArr = operation.split("+");
-    //         const sum = Number(numbersArr[0]) + Number(numbersArr[1]);
-    //         return String(sum);
+    //         const value = Number(numbersArr[0]) + Number(numbersArr[1]);
+    //         return String(value);
     //     } else if(operation.includes("-")) {
     //         const numbersArr = operation.split("-");
-    //         const sum = Number(numbersArr[0]) - Number(numbersArr[1]);
-    //         return String(sum);
+    //         const value = Number(numbersArr[0]) - Number(numbersArr[1]);
+    //         return String(value);
     //     } else if(operation.includes("*")) {
     //         const numbersArr = operation.split("*");
-    //         const sum = Number(numbersArr[0]) * Number(numbersArr[1]);
-    //         return String(sum);
+    //         const value = Number(numbersArr[0]) * Number(numbersArr[1]);
+    //         return String(value);
     //     } else if(operation.includes("/")) {
     //         const numbersArr = operation.split("/");
-    //         const sum = Number(numbersArr[0]) / Number(numbersArr[1]);
-    //         return String(sum);
+    //         const value = Number(numbersArr[0]) / Number(numbersArr[1]);
+    //         return String(value);
     //     } else if(operation.includes("%")) {
     //         const numbersArr = operation.split("%");
-    //         const sum = Number(numbersArr[0]) % Number(numbersArr[1]);
-    //         return String(sum);
+    //         const value = Number(numbersArr[0]) % Number(numbersArr[1]);
+    //         return String(value);
     //     } else {
     //         moreOperations = false;
     //     }
     // }
+    let numbersArr = [];
+    let value = 0;
     if(operation.includes("+")){
-        const numbersArr = operation.split("+");
-        const sum = Number(numbersArr[0]) + Number(numbersArr[1]);
-        return String(sum);
+        numbersArr = operation.split("+");
+        value = Number(numbersArr[0]) + Number(numbersArr[1]);
+        return String(value);
     } else if(operation.includes("-")) {
-        const numbersArr = operation.split("-");
-        const sum = Number(numbersArr[0]) - Number(numbersArr[1]);
-        return String(sum);
+        numbersArr = operation.split("-");
+        value = Number(numbersArr[0]) - Number(numbersArr[1]);
+        return String(value);
     } else if(operation.includes("*")) {
-        const numbersArr = operation.split("*");
-        const sum = Number(numbersArr[0]) * Number(numbersArr[1]);
-        return String(sum);
+        numbersArr = operation.split("*");
+        value = Number(numbersArr[0]) * Number(numbersArr[1]);
+        return String(value);
     } else if(operation.includes("/")) {
-        const numbersArr = operation.split("/");
-        const sum = Number(numbersArr[0]) / Number(numbersArr[1]);
-        return String(sum);
+        numbersArr = operation.split("/");
+        value = Number(numbersArr[0]) / Number(numbersArr[1]);
+        return String(value);
     } else if(operation.includes("%")) {
-        const numbersArr = operation.split("%");
-        const sum = Number(numbersArr[0]) % Number(numbersArr[1]);
-        return String(sum);
+        numbersArr = operation.split("%");
+        value = Number(numbersArr[0]) % Number(numbersArr[1]);
+        return String(value);
     }
 }
 const handleButtonClick = (event) => {
@@ -60,8 +62,9 @@ const handleButtonClick = (event) => {
         operationString = "";
         outputDisplay.innerHTML = "0"
     } else if(element == "="){
+        const oldString = operationString;
         operationString = handleOperation(operationString);
-        outputDisplay.innerHTML = operationString;
+        outputDisplay.innerHTML = oldString + " = " + operationString;
         
     } else if(element == "+/-"){
         operationString = "-" + operationString;
