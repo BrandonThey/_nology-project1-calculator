@@ -1,0 +1,16 @@
+#calculator{
+    display: flex;
+    border: 2px solid black;
+}
+
+#display{
+    display: flex;
+    border: 2px solid black;
+    flex-wrap: wrap;
+}
+#buttonPad {
+    display: flex;
+    width: 100%;
+    border: 2px solid black;
+    flex-wrap: wrap;
+}
