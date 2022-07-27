@@ -1,16 +1,37 @@
+$calculator-color: rgb(149, 33, 149);
+$page-color: darkblue;
+
 #calculator{
     display: flex;
-    border: 2px solid black;
+    border: 2px solid $calculator-color;
+    flex-direction: column;
+    height: 450px;
 }
 
 #display{
     display: flex;
-    border: 2px solid black;
+    border: 2px solid $calculator-color;
     flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: right;
+
+    h2{
+        margin-right: 3%;
+    }
 }
 #buttonPad {
     display: flex;
     width: 100%;
-    border: 2px solid black;
+    height: 100%;
+    border: 2px solid $calculator-color;
     flex-wrap: wrap;
+    justify-content: space-between;
+
+    button{
+        width: 19%;
+        height: 15%;
+        margin: 1%;
+        margin-top: 1%;
+    }
 }

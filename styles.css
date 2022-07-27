@@ -1,17 +1,33 @@
 #calculator {
   display: flex;
-  border: 2px solid black;
+  border: 2px solid rgb(149, 33, 149);
+  flex-direction: column;
+  height: 450px;
 }
 
 #display {
   display: flex;
-  border: 2px solid black;
+  border: 2px solid rgb(149, 33, 149);
   flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: right;
+}
+#display h2 {
+  margin-right: 3%;
 }
 
 #buttonPad {
   display: flex;
   width: 100%;
-  border: 2px solid black;
+  height: 100%;
+  border: 2px solid rgb(149, 33, 149);
   flex-wrap: wrap;
+  justify-content: space-between;
 }
+#buttonPad button {
+  width: 19%;
+  height: 15%;
+  margin: 1%;
+  margin-top: 1%;
+}/*# sourceMappingURL=styles.css.map */
