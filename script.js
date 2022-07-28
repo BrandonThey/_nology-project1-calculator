@@ -14,6 +14,7 @@ const handleOperation = (operationArr) => {
             //getting the numbers to the sides of the operand
             number1 = operationArr[i-1];
             number2 = operationArr[i+1];
+            if(isNaN(number1) && isNaN(number2)){return "Invalid Operation";} //error message checking if the values are numbers
             //putting the result of the operation to the left side of the operand
             operationArr[i-1] = (Number(number1) * Number(number2));
             //remove the operand and the right side from array
@@ -24,6 +25,7 @@ const handleOperation = (operationArr) => {
             //getting the numbers to the sides of the operand
             number1 = operationArr[i-1];
             number2 = operationArr[i+1];
+            if(isNaN(number1) && isNaN(number2)){return "Invalid Operation";} //error message checking if the values are numbers
             //putting the result of the operation to the left side of the operand
             operationArr[i-1] = (Number(number1) / Number(number2));
             //remove the operand and the right side from array
@@ -34,6 +36,7 @@ const handleOperation = (operationArr) => {
             //getting the numbers to the sides of the operand
             number1 = operationArr[i-1];
             number2 = operationArr[i+1];
+            if(isNaN(number1) && isNaN(number2)){return "Invalid Operation";} //error message checking if the values are numbers
             //putting the result of the operation to the left side of the operand
             operationArr[i-1] = (Number(number1) % Number(number2));
             //remove the operand and the right side from array
@@ -44,14 +47,19 @@ const handleOperation = (operationArr) => {
     }
 
     //second for loop that handles addition and subtraction
+    //getting the first number in the array
     number1 = operationArr.shift();
     for(let i = 0; i < operationArr.length; i++){
         operand = operationArr.shift();
         number2 = operationArr.shift();
+        //testing if the first and second values are numbers and adding or subtracting
         if(!isNaN(number1) && !isNaN(number2) && operand == "+"){
             number1 = Number(number1) + Number(number2);
         } else if(!isNaN(number1) && !isNaN(number2) && operand == "-"){
             number1 = (Number(number1) - Number(number2));
+        }
+        else { //error message for inputs that arent numbers
+            return "Invalid Operation";
         }
     }
     return String(number1);
@@ -67,8 +75,12 @@ const handleButtonClick = (event) => {
     } else if(element == "="){
         const oldString = operationArr.join("");
         output = handleOperation(operationArr);
-        outputDisplay.innerHTML = oldString + " = " + output;
-        
+        if(output != "Invalid Operation") {
+            outputDisplay.innerHTML = oldString + " = " + output;
+        } else{
+            operationArr = [];
+            outputDisplay.innerHTML = output;
+        }
     } else if(element == "+/-"){
         const negativeNumber = operationArr.pop()*-1;
         operationArr.push(negativeNumber)
