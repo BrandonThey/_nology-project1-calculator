@@ -7,8 +7,7 @@ let numberString = "";
 const handleOperation = (operationArr) => {
     let number1, number2, operand;
     
-    //first for loop to handle any multiplication, division or modulo to keep 
-    //the order of operations intact
+    //first for loop to handle squares
     for(let i = 0; i < operationArr.length; i++){
         operand = operationArr[i];
         if(operand == "^"){
@@ -22,7 +21,13 @@ const handleOperation = (operationArr) => {
             operationArr.splice(i, 2);
             //moving i back after splicing to not miss any operands
             i--;
-        } else if(operand == "*"){
+        }
+    }
+    //Second for loop to handle any multiplication, division or modulo to keep 
+    //the order of operations intact
+    for(let i = 0; i < operationArr.length; i++){
+        operand = operationArr[i];
+        if(operand == "*"){
             //getting the numbers to the sides of the operand
             number1 = operationArr[i-1];
             number2 = operationArr[i+1];
@@ -58,7 +63,7 @@ const handleOperation = (operationArr) => {
         }   
     }
 
-    //second for loop that handles addition and subtraction
+    //third for loop that handles addition and subtraction
     //getting the first number in the array
     number1 = operationArr.shift();
     for(let i = 0; i < operationArr.length; i++){
@@ -87,7 +92,6 @@ const handleButtonClick = (event) => {
         output = "";
         outputDisplay.innerHTML = "0"
     } else if(element == "="){
-        operationArr = numberString.split(" ");
         output = handleOperation(operationArr);
         if(output != "Invalid Operation") {
             outputDisplay.innerHTML = numberString + " = " + output;
@@ -99,8 +103,8 @@ const handleButtonClick = (event) => {
     } else if(element == "+/-"){
         const negativeNumber = operationArr.pop()*-1;
         operationArr.push(negativeNumber)
-        output = operationArr.join("");
-        outputDisplay.innerHTML = output;
+        numberString = operationArr.join("");
+        outputDisplay.innerHTML = numberString;
     } else if(element == "+" || element == "-" || element == "*" || element == "/" || element == "%" || element == "^"){
         numberString += " " + element + " ";
         outputDisplay.innerHTML = numberString;
@@ -108,6 +112,8 @@ const handleButtonClick = (event) => {
         numberString += element;
         outputDisplay.innerHTML = numberString;
     }
+
+    operationArr = numberString.split(" ");
 }
 
 for(let i = 0; i < calculatorButtons.length; i++){
