@@ -2,6 +2,7 @@ const calculatorButtons = document.querySelectorAll("button");
 const outputDisplay = document.querySelector("#display");
 
 let operationArr = [];
+let numberString = "";
 
 const handleOperation = (operationArr) => {
     let number1, number2, operand;
@@ -68,34 +69,45 @@ const handleOperation = (operationArr) => {
 const handleButtonClick = (event) => {
     const element = event.target.innerHTML;
     let output = "";
+
     if(element == "AC"){
         operationArr = [];
+        numberString = "";
         output = "";
         outputDisplay.innerHTML = "0"
     } else if(element == "="){
-        const oldString = operationArr.join("");
+        operationArr = numberString.split(" ");
         output = handleOperation(operationArr);
         if(output != "Invalid Operation") {
-            outputDisplay.innerHTML = oldString + " = " + output;
+            outputDisplay.innerHTML = numberString + " = " + output;
         } else{
             operationArr = [];
             outputDisplay.innerHTML = output;
         }
+        numberString = "";
     } else if(element == "+/-"){
         const negativeNumber = operationArr.pop()*-1;
         operationArr.push(negativeNumber)
         output = operationArr.join("");
         outputDisplay.innerHTML = output;
-    }
-    else if(element == "Redo"){
-        operationArr.pop();
-        output = operationArr.join("");
-        outputDisplay.innerHTML = output;
+    } else if(element == "Redo"){
+        if (operationArr.length > 1) {
+            operationArr.pop();
+            output = operationArr.join("");
+            outputDisplay.innerHTML = output;
+        } else {
+            operationArr = [];
+            output = "";
+            outputDisplay.innerHTML = "0"
+        }
+    } 
+    else if(element == "+" || element == "-" || element == "*" || element == "/" || element == "%"){
+        numberString += " " + element + " ";
+        outputDisplay.innerHTML = numberString;
     }
     else{
-        operationArr.push(element);
-        output = operationArr.join("");
-        outputDisplay.innerHTML = output;
+        numberString += element;
+        outputDisplay.innerHTML = numberString;
     }
 }
 
