@@ -10,20 +10,19 @@ const handleOperation = (operationArr) => {
         operand = operationArr.shift();
         number2 = operationArr.shift();
         console.log(number1 + " " + operand + " " + number2);
-        console.log(typeof number1);
-        if(!isNaN(number1) && !isNaN(number2) && operand == "+"){
-            console.log(number1 + number2);
-            return String(Number(number1) + Number(number2));
-        } else if(!isNaN(number1) && !isNaN(number2) === "number" && operand == "-"){
-            return String(Number(number1) - Number(number2));
-        } else if(!isNaN(number1) && !isNaN(number2) === "number" && operand == "*"){
-            return String(Number(number1) * Number(number2));
-        } else if(!isNaN(number1) && !isNaN(number2) === "number" && operand == "/"){
-            return String(Number(number1) / Number(number2));
-        } else if(!isNaN(number1) && !isNaN(number2) === "number" && operand == "%"){
-            return String(Number(number1) % Number(number2));
+        if(!isNaN(number1) && !isNaN(number2) && operand == "*"){
+            number1 = (Number(number1) * Number(number2));
+        } else if(!isNaN(number1) && !isNaN(number2) && operand == "/"){
+            number1 = (Number(number1) / Number(number2));
+        } else if(!isNaN(number1) && !isNaN(number2) && operand == "%"){
+            number1 = (Number(number1) % Number(number2));
+        } else if(!isNaN(number1) && !isNaN(number2) && operand == "+"){
+            number1 = Number(number1) + Number(number2);
+        } else if(!isNaN(number1) && !isNaN(number2) && operand == "-"){
+            number1 = (Number(number1) - Number(number2));
         }
     }
+    return number1;
 }
 
 const handleButtonClick = (event) => {
