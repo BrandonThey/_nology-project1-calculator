@@ -67,6 +67,7 @@ const handleButtonClick = (event) => {
         outputDisplay.innerHTML = oldString + " = " + operationString;
         
     } else if(element == "+/-"){
+        // make it so that the last number in the string is negative
         operationString = "-" + operationString;
         outputDisplay.innerHTML = operationString;
     }

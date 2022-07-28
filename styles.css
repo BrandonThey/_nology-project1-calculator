@@ -52,14 +52,50 @@ body {
   border-radius: 10px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1023px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #calculator {
+    width: 90%;
+    margin-top: 50px;
+  }
+
   #display p {
     font-size: 35px;
   }
+
   #buttonPad button {
     margin: 0.5%;
     width: 23%;
     height: 17%;
     font-size: 25px;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+@media screen and (min-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #calculator {
+    width: 50%;
+  }
+
+  #display p {
+    font-size: 35px;
+  }
+
+  #buttonPad button {
+    margin: 0.5%;
+    width: 23%;
+    height: 17%;
+    font-size: 25px;
+  }
+}
