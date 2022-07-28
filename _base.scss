@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+$calculator-color: #E27D60;
+$page-color: #85DCBA;
+$primary-font: "Roboto";
+$font-color: white; 
+$button-color: #C38D9E;
+ *{
+    font-family: $primary-font, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: $font-color;
+}
+
+
+@media screen and (min-width: 1023px){
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #calculator {
+        width: 90%;
+        margin-top: 50px
+    }
+
+    #display{
+        p{
+            font-size: 35px;
+        }
+    }
+
+    #buttonPad{
+        button{
+            margin: .5%;
+            width: 23%;
+            height: 17%;
+            font-size: 25px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px){
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #calculator {
+        width: 50%;
+    }
+
+    #display{
+        p{
+            font-size: 35px;
+        }
+    }
+
+    #buttonPad{
+        button{
+            margin: .5%;
+            width: 23%;
+            height: 17%;
+            font-size: 25px;
+        }
+    }
+}

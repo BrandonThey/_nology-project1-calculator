@@ -85,6 +85,7 @@ const handleOperation = (operationArr) => {
 }
 
 const handleButtonClick = (event) => {
+    //two variables, element to hold the event's innerhtml aka the button's value, and output to hold an output message
     const element = event.target.innerHTML;
     let output = "";
 
