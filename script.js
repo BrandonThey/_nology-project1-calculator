@@ -1,79 +1,54 @@
 const calculatorButtons = document.querySelectorAll("button");
 const outputDisplay = document.querySelector("#display");
 
-let operationString = "";
+let operationArr = [];
 
-const handleOperation = (operation) => {
-    //need to add capabilty to handle multiple operations in one string
-    // let moreOperations = true;
-
-    // while(moreOperations){
-    //     if(operation.includes("+")){
-    //         const numbersArr = operation.split("+");
-    //         const value = Number(numbersArr[0]) + Number(numbersArr[1]);
-    //         return String(value);
-    //     } else if(operation.includes("-")) {
-    //         const numbersArr = operation.split("-");
-    //         const value = Number(numbersArr[0]) - Number(numbersArr[1]);
-    //         return String(value);
-    //     } else if(operation.includes("*")) {
-    //         const numbersArr = operation.split("*");
-    //         const value = Number(numbersArr[0]) * Number(numbersArr[1]);
-    //         return String(value);
-    //     } else if(operation.includes("/")) {
-    //         const numbersArr = operation.split("/");
-    //         const value = Number(numbersArr[0]) / Number(numbersArr[1]);
-    //         return String(value);
-    //     } else if(operation.includes("%")) {
-    //         const numbersArr = operation.split("%");
-    //         const value = Number(numbersArr[0]) % Number(numbersArr[1]);
-    //         return String(value);
-    //     } else {
-    //         moreOperations = false;
-    //     }
-    // }
-    let numbersArr = [];
-    let value = 0;
-    if(operation.includes("+")){
-        numbersArr = operation.split("+");
-        value = Number(numbersArr[0]) + Number(numbersArr[1]);
-        return String(value);
-    } else if(operation.includes("-")) {
-        numbersArr = operation.split("-");
-        value = Number(numbersArr[0]) - Number(numbersArr[1]);
-        return String(value);
-    } else if(operation.includes("*")) {
-        numbersArr = operation.split("*");
-        value = Number(numbersArr[0]) * Number(numbersArr[1]);
-        return String(value);
-    } else if(operation.includes("/")) {
-        numbersArr = operation.split("/");
-        value = Number(numbersArr[0]) / Number(numbersArr[1]);
-        return String(value);
-    } else if(operation.includes("%")) {
-        numbersArr = operation.split("%");
-        value = Number(numbersArr[0]) % Number(numbersArr[1]);
-        return String(value);
+const handleOperation = (operationArr) => {
+    let number1, number2, operand, value = 0;
+    number1 = operationArr.shift();
+    for(let i = 0; i < operationArr.length; i++){
+        operand = operationArr.shift();
+        number2 = operationArr.shift();
+        console.log(number1 + " " + operand + " " + number2);
+        console.log(typeof number1);
+        if(!isNaN(number1) && !isNaN(number2) && operand == "+"){
+            console.log(number1 + number2);
+            return String(Number(number1) + Number(number2));
+        } else if(!isNaN(number1) && !isNaN(number2) === "number" && operand == "-"){
+            return String(Number(number1) - Number(number2));
+        } else if(!isNaN(number1) && !isNaN(number2) === "number" && operand == "*"){
+            return String(Number(number1) * Number(number2));
+        } else if(!isNaN(number1) && !isNaN(number2) === "number" && operand == "/"){
+            return String(Number(number1) / Number(number2));
+        } else if(!isNaN(number1) && !isNaN(number2) === "number" && operand == "%"){
+            return String(Number(number1) % Number(number2));
+        }
     }
 }
+
 const handleButtonClick = (event) => {
     const element = event.target.innerHTML;
+    let output = "";
     if(element == "AC"){
-        operationString = "";
+        operationArr = [];
+        output = "";
         outputDisplay.innerHTML = "0"
     } else if(element == "="){
-        const oldString = operationString;
-        operationString = handleOperation(operationString);
-        outputDisplay.innerHTML = oldString + " = " + operationString;
+        const oldString = operationArr.join("");
+        output = handleOperation(operationArr);
+        outputDisplay.innerHTML = oldString + " = " + output;
         
     } else if(element == "+/-"){
         // make it so that the last number in the string is negative
-        operationString = "-" + operationString;
-        outputDisplay.innerHTML = operationString;
+        const negativeNumber = operationArr.pop()*-1;
+        operationArr.push(negativeNumber)
+        output = operationArr.join("");
+        outputDisplay.innerHTML = output;
     }
     else{
-        operationString += element;
-        outputDisplay.innerHTML = operationString;
+        operationArr.push(element);
+        output = operationArr.join("");
+        outputDisplay.innerHTML = output;
     }
 }
 
