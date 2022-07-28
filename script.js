@@ -11,7 +11,18 @@ const handleOperation = (operationArr) => {
     //the order of operations intact
     for(let i = 0; i < operationArr.length; i++){
         operand = operationArr[i];
-        if(operand == "*"){
+        if(operand == "^"){
+            //getting the numbers to the sides of the operand
+            number1 = operationArr[i-1];
+            number2 = operationArr[i+1];
+            if(isNaN(number1) && isNaN(number2)){return "Invalid Operation";} //error message checking if the values are numbers
+            //putting the result of the operation to the left side of the operand
+            operationArr[i-1] = (Number(number1) ** Number(number2));
+            //remove the operand and the right side from array
+            operationArr.splice(i, 2);
+            //moving i back after splicing to not miss any operands
+            i--;
+        } else if(operand == "*"){
             //getting the numbers to the sides of the operand
             number1 = operationArr[i-1];
             number2 = operationArr[i+1];
@@ -90,22 +101,10 @@ const handleButtonClick = (event) => {
         operationArr.push(negativeNumber)
         output = operationArr.join("");
         outputDisplay.innerHTML = output;
-    } else if(element == "Redo"){
-        if (operationArr.length > 1) {
-            operationArr.pop();
-            output = operationArr.join("");
-            outputDisplay.innerHTML = output;
-        } else {
-            operationArr = [];
-            output = "";
-            outputDisplay.innerHTML = "0"
-        }
-    } 
-    else if(element == "+" || element == "-" || element == "*" || element == "/" || element == "%"){
+    } else if(element == "+" || element == "-" || element == "*" || element == "/" || element == "%" || element == "^"){
         numberString += " " + element + " ";
         outputDisplay.innerHTML = numberString;
-    }
-    else{
+    } else{
         numberString += element;
         outputDisplay.innerHTML = numberString;
     }
