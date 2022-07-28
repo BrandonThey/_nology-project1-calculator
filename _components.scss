@@ -14,8 +14,11 @@
 }
 
 #display{
+    background-color: #124e46;
     display: flex;
-    border-bottom: 4px solid $calculator-color;
+    border: 1px solid #4a968c;
+    margin-bottom: 2px;
+    border-radius: 10px;
     flex-wrap: wrap;
     width: 100%;
     align-items: center;
