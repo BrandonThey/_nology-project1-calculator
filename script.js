@@ -1,6 +1,8 @@
 const calculatorButtons = document.querySelectorAll("button");
 const outputDisplay = document.querySelector("#display");
 
+//Two variables, operationArr to hold numbers and operands for the handleOperation function to use
+//numberString to string together numbers and operands so we can have multidigit numbers along with operands
 let operationArr = [];
 let numberString = "";
 
@@ -86,34 +88,33 @@ const handleButtonClick = (event) => {
     const element = event.target.innerHTML;
     let output = "";
 
-    if(element == "AC"){
+    if(element == "AC"){ //AC clears all operations and values
         operationArr = [];
         numberString = "";
-        output = "";
         outputDisplay.innerHTML = "0"
-    } else if(element == "="){
-        output = handleOperation(operationArr);
+    } else if(element == "="){ // = is a sign that the user is ready to have their operation processed
+        output = handleOperation(operationArr); //the handle operation returns a string, the result of a succesful operation, or a error message
         if(output != "Invalid Operation") {
             outputDisplay.innerHTML = numberString + " = " + output;
-        } else{
+        } else{ //if the error message was received then reset operations and display error
             operationArr = [];
             outputDisplay.innerHTML = output;
         }
         numberString = "";
-    } else if(element == "+/-"){
+    } else if(element == "+/-"){ //if the user changed a number to negative then pop that number from array and turn it negative then push it back
         const negativeNumber = operationArr.pop()*-1;
         operationArr.push(negativeNumber)
         numberString = operationArr.join("");
         outputDisplay.innerHTML = numberString;
-    } else if(element == "+" || element == "-" || element == "*" || element == "/" || element == "%" || element == "^"){
+    } else if(element == "+" || element == "-" || element == "*" || element == "/" || element == "%" || element == "^"){ //if the user chose an operand then delimit the string with spaces 
         numberString += " " + element + " ";
         outputDisplay.innerHTML = numberString;
-    } else{
+    } else{ //if the user chose a number button then add it to the numberString
         numberString += element;
         outputDisplay.innerHTML = numberString;
     }
 
-    operationArr = numberString.split(" ");
+    operationArr = numberString.split(" "); //constantly updating the operationArr with the numberString
 }
 
 for(let i = 0; i < calculatorButtons.length; i++){
