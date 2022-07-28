@@ -10,6 +10,7 @@
     background-color: #41B3A3;
     flex-direction: column;
     height: 450px;
+    box-shadow: black 5px 5px 9px;
 }
 
 #display{
@@ -33,11 +34,33 @@
     justify-content: space-between;
     
     button{
-        background-color: $button-color;
         width: 19%;
         height: 15%;
         margin: 1%;
         margin-top: 1%;
         border-radius: 10px;
+        box-shadow: black 2px 2px 3px;
     }
+}
+
+.numberButton {
+    background-color: $number-button-color;
+    border-radius: 5px;
+    border: none;
+}
+
+.numberButton:hover {
+    background-color: #F082AC;
+    cursor:pointer;
+}
+
+.operatorButton {
+    background-color: $operand-button-color;
+    border-radius: 5px;
+    border: none;
+}
+
+.operatorButton:hover {
+    background-color: #fb8332;
+    cursor:pointer;
 }
