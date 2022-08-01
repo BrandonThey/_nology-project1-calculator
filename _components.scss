@@ -47,6 +47,14 @@
     }
 }
 
+#stepsDisplay{
+    display: flex;
+    flex-direction: column;
+    p {
+        margin: 2px;
+    }
+}
+
 .numberButton {
     background-color: $number-button-color;
     border-radius: 5px;

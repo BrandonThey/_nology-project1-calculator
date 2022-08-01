@@ -10,6 +10,49 @@ $operand-button-color:#fa6400;
     color: $font-color;
 }
 
+@media screen and (min-width: 400px){
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #calculator {
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 760px){
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #calculator {
+        width: 50%;
+    }
+
+    #display{
+        p{
+            font-size: 35px;
+        }
+    }
+
+    #buttonPad{
+        button{
+            margin: .5%;
+            width: 23%;
+            height: 17%;
+            font-size: 25px;
+        }
+    }
+}
+
 
 @media screen and (min-width: 1023px){
     body {
@@ -20,7 +63,7 @@ $operand-button-color:#fa6400;
     }
 
     #calculator {
-        width: 90%;
+        width: 55%;
         margin-top: 50px
     }
 
@@ -40,44 +83,14 @@ $operand-button-color:#fa6400;
     }
 }
 
-@media screen and (min-width: 768px){
-
-    body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+@media screen and (max-width:750px){
+    h4 {
+        display: none;       
     }
-
-    #calculator {
-        width: 50%;
-    }
-
-    #display{
-        p{
-            font-size: 35px;
+    #stepsDisplay {
+        display: none;
+        p {
+            display: none;
         }
-    }
-
-    #buttonPad{
-        button{
-            margin: .5%;
-            width: 23%;
-            height: 17%;
-            font-size: 25px;
-        }
-    }
-}
-
-@media screen and (min-width: 400px){
-    body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    #calculator {
-        width: 50%;
     }
 }
