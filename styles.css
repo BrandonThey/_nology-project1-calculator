@@ -82,6 +82,7 @@
   align-items: center;
   justify-content: right;
   font-size: 25px;
+  min-height: 20%;
 }
 #display p {
   margin-right: 3%;

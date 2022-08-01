@@ -1,6 +1,6 @@
 const calculatorButtons = document.querySelectorAll("button");
 const outputDisplay = document.querySelector("#display");
-
+const stepsDisplay = document.querySelector("#stepsDisplay")
 //Two variables, operationArr to hold numbers and operands for the handleOperation function to use
 //numberString to string together numbers and operands so we can have multidigit numbers along with operands
 let operationArr = [];
@@ -17,8 +17,15 @@ const handleOperation = (operationArr) => {
             number1 = operationArr[i-1];
             number2 = operationArr[i+1];
             if(isNaN(number1) && isNaN(number2)){return "Invalid Operation";} //error message checking if the values are numbers
+            
             //putting the result of the operation to the left side of the operand
             operationArr[i-1] = (Number(number1) ** Number(number2));
+            //create a new p tag to show the user the operation
+            const newPElement = document.createElement("p");
+            const newText = document.createTextNode(`${number1} ^ ${number2} = ${operationArr[i-1]}`);
+            newPElement.appendChild(newText);
+            stepsDisplay.appendChild(newPElement);
+
             //remove the operand and the right side from array
             operationArr.splice(i, 2);
             //moving i back after splicing to not miss any operands
@@ -36,6 +43,11 @@ const handleOperation = (operationArr) => {
             if(isNaN(number1) && isNaN(number2)){return "Invalid Operation";} //error message checking if the values are numbers
             //putting the result of the operation to the left side of the operand
             operationArr[i-1] = (Number(number1) * Number(number2));
+            //create a new p tag to show the user the operation
+            const newPElement = document.createElement("p");
+            const newText = document.createTextNode(`${number1} ${operand} ${number2} = ${operationArr[i-1]}`);
+            newPElement.appendChild(newText);
+            stepsDisplay.appendChild(newPElement);
             //remove the operand and the right side from array
             operationArr.splice(i, 2);
             //moving i back after splicing to not miss any operands
@@ -44,9 +56,17 @@ const handleOperation = (operationArr) => {
             //getting the numbers to the sides of the operand
             number1 = operationArr[i-1];
             number2 = operationArr[i+1];
+            if(number2 == 0){
+                return "Error: Divide By 0"
+            }
             if(isNaN(number1) && isNaN(number2)){return "Invalid Operation";} //error message checking if the values are numbers
             //putting the result of the operation to the left side of the operand
             operationArr[i-1] = (Number(number1) / Number(number2));
+            //create a new p tag to show the user the operation
+            const newPElement = document.createElement("p");
+            const newText = document.createTextNode(`${number1} ${operand} ${number2} = ${operationArr[i-1]}`);
+            newPElement.appendChild(newText);
+            stepsDisplay.appendChild(newPElement);
             //remove the operand and the right side from array
             operationArr.splice(i, 2);
             //moving i back after splicing to not miss any operands
@@ -58,27 +78,43 @@ const handleOperation = (operationArr) => {
             if(isNaN(number1) && isNaN(number2)){return "Invalid Operation";} //error message checking if the values are numbers
             //putting the result of the operation to the left side of the operand
             operationArr[i-1] = (Number(number1) % Number(number2));
+            //create a new p tag to show the user the operation
+            const newPElement = document.createElement("p");
+            const newText = document.createTextNode(`${number1} ${operand} ${number2} = ${operationArr[i-1]}`);
+            newPElement.appendChild(newText);
+            stepsDisplay.appendChild(newPElement);
             //remove the operand and the right side from array
             operationArr.splice(i, 2);
             //moving i back after splicing to not miss any operands
             i--;
         }   
+
     }
 
     //third for loop that handles addition and subtraction
     //getting the first number in the array
     number1 = operationArr.shift();
-    for(let i = 0; i < operationArr.length; i++){
+    while(operationArr.length > 0){
         operand = operationArr.shift();
         number2 = operationArr.shift();
         //testing if the first and second values are numbers and adding or subtracting
         if(!isNaN(number1) && !isNaN(number2) && operand == "+"){
+            //create a new p tag to show the user the operation
+            const newPElement = document.createElement("p");
+            const newText = document.createTextNode(`${number1} ${operand} ${number2} = ${Number(number1) + Number(number2)}`);
+            newPElement.appendChild(newText);
+            stepsDisplay.appendChild(newPElement);
             number1 = Number(number1) + Number(number2);
         } else if(!isNaN(number1) && !isNaN(number2) && operand == "-"){
+            //create a new p tag to show the user the operation
+            const newPElement = document.createElement("p");
+            const newText = document.createTextNode(`${number1} ${operand} ${number2} = ${Number(number1) - Number(number2)}`);
+            newPElement.appendChild(newText);
+            stepsDisplay.appendChild(newPElement);
             number1 = (Number(number1) - Number(number2));
         }
         else { //error message for inputs that arent numbers
-            return "Invalid Operation";
+            return "Error: Invalid Operation";
         }
     }
     return String(number1);
@@ -104,9 +140,14 @@ const handleButtonClick = (event) => {
         numberString = "";
     } else if(element == "+/-"){ //if the user changed a number to negative then pop that number from array and turn it negative then push it back
         const negativeNumber = operationArr.pop()*-1;
-        operationArr.push(negativeNumber)
-        numberString = operationArr.join("");
-        outputDisplay.innerHTML = numberString;
+        if(negativeNumber == 0){
+            operationArr = [];
+            numberString = "";
+            outputDisplay.innerHTML = "Error: Negative 0 or Operator";
+        }else{
+            numberString = operationArr.join(" ");
+            outputDisplay.innerHTML = numberString;
+        }
     } else if(element == "+" || element == "-" || element == "*" || element == "/" || element == "%" || element == "^"){ //if the user chose an operand then delimit the string with spaces 
         numberString += " " + element + " ";
         outputDisplay.innerHTML = numberString;
